@@ -11,20 +11,20 @@
 </template>
 
 <script>
-  import navigation from '@/components/home/navigation'
+  import Navigation from '@/components/blog/Navigation'
+
   export default {
     name: 'Layout',
     components: {
-      navigation
+      Navigation
     },
-    methods: {
-      hasChild(item) {
-        return item !== undefined && item.children !== undefined && item.children.length > 0
-      }
-    }
+    data() {
+      return {}
+    },
+    methods: {}
   }
 </script>
 
 <style scoped lang="scss">
-  @import "~@/style/home/layout.scss";
+  @import "~@/style/blog/layout.scss";
 </style>

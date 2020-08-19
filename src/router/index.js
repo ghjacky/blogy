@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { HomeRouter } from './home/index'
+import { BlogRouter } from './blog/index'
+import { HomeRouter } from '@/router/home'
 
 Vue.use(VueRouter)
 
 const routes = [
-  HomeRouter
+  HomeRouter,
+  BlogRouter
 ]
 
 const router = new VueRouter({

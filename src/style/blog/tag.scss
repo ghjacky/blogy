@@ -1,0 +1,12 @@
+.tag {
+  margin: 5px auto;
+  overflow: auto;
+
+  .el-tag {
+    padding: 0;
+    height: auto;
+    line-height: 1em;
+    margin: 5px;
+    cursor: pointer;
+  }
+}

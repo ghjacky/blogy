@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
-    <el-menu mode="horizontal">
-      <el-menu-item v-for="(item,index) in menu" :key="index" :index="item.path" :route="item.name">
+    <el-menu mode="horizontal" :router="true">
+      <el-menu-item v-for="(item,index) in menu" :key="index" :index="item.name" :route="item.name">
         {{ item.meta.title }}
       </el-menu-item>
     </el-menu>
@@ -9,22 +9,23 @@
 </template>
 
 <script>
-  import { HomeRouter } from '@/router/home'
+  import { BlogRouter } from '@/router/blog'
 
   export default {
-    name: 'navigation',
     data() {
       return {
         menu: [
           {
-            path: '/',
-            name: '/'
+            path: '/home',
+            name: '/home'
           }
         ]
       }
     },
     created() {
-      this.menu = HomeRouter.children
+      this.menu = BlogRouter.children
+    },
+    methods: {
     }
   }
 </script>
@@ -39,11 +40,14 @@
       width: fit-content;
       border: none;
       margin: 0 auto;
+
       .el-menu-item {
         color: #e6e6e7;
       }
-      .el-menu-item:hover {
-        background-color: #6f798d;
+
+      .el-menu-item:hover, .el-menu-item:focus {
+        background-color: #545c6d;
+        color: white;
       }
     }
   }
