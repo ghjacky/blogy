@@ -1,7 +1,8 @@
 <template>
-  <content-layout class="latest">
-    <div class="content" slot="content">
+  <content-layout>
+    <div class="latest" slot="content">
       <post-item v-for="(post,index) in latestPosts" :key="index" :post="post"></post-item>
+      <el-divider></el-divider>
     </div>
   </content-layout>
 </template>
@@ -20,8 +21,17 @@
             id: 1,
             created_at: '2020-08-19 15:00:00',
             title: 'vue 基础知识 01',
-            content: '',
-            summary: '',
+            author: {
+              id: 1,
+              name: 'ghjacky',
+              username: 'ghjacky'
+            },
+            content: '文章内容',
+            summary: 'Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。\n' +
+              '\n' +
+              '如果你想在深入学习 Vue 之前对它有更多了解，我们制作了一个视频，带您了解其核心概念和一个示例工程。' +
+              '\n' +
+              '官方指南假设你已了解关于 HTML、CSS 和 JavaScript 的中级知识。如果你刚开始学习前端开发，将框架作为你的第一步可能不是最好的主意——掌握好基础知识再来吧！之前有其它框架的使用经验会有帮助，但这不是必需的。',
             cover: '',
             category: {
               id: 1,
@@ -39,5 +49,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~@/style/blog/sidebar/latest.scss";
+  @import "~@/style/blog/content/latest.scss";
 </style>
