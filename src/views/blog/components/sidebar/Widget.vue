@@ -18,5 +18,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~@/style/blog/widget.scss";
+  @import "~@/style/blog/sidebar/widget.scss";
 </style>

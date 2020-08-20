@@ -6,8 +6,8 @@
 </template>
 
 <script>
-  import Category from '@/views/blog/components/Category'
-  import Tag from '@/views/blog/components/Tag'
+  import Category from '@/views/blog/components/sidebar/Category'
+  import Tag from '@/views/blog/components/sidebar/Tag'
 
   export default {
     name: 'Sidebar',

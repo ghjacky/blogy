@@ -4,21 +4,24 @@
   margin: 0 auto;
   overflow: auto;
 
-  .sidebar, .content {
+  .sidebar-wrapper, .content-wrapper {
     min-height: 1000px;
     display: inline-block;
     float: left;
   }
 
-  .sidebar {
+  .sidebar-wrapper {
     width: 300px;
     background-color: #343a3d;
     color: #ecece4;
   }
 
-  .content {
+  .content-wrapper {
     width: calc(100% - 300px);
     background-color: #4e5558;
     color: #ecece4;
+    .content {
+
+    }
   }
 }

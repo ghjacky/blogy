@@ -31,24 +31,5 @@
 </script>
 
 <style scoped lang="scss">
-  .nav {
-    width: 100%;
-    height: 100%;
-
-    .el-menu {
-      background-color: #2c3e50;
-      width: fit-content;
-      border: none;
-      margin: 0 auto;
-
-      .el-menu-item {
-        color: #e6e6e7;
-      }
-
-      .el-menu-item:hover, .el-menu-item:focus {
-        background-color: #545c6d;
-        color: white;
-      }
-    }
-  }
+  @import "~@/style/blog/navigation.scss";
 </style>

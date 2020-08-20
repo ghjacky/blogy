@@ -3,6 +3,7 @@
     <div class="header">
       <navigation></navigation>
     </div>
+    <div class="hc-divider"></div>
     <div class="content">
       <router-view :key="$route.path"></router-view>
     </div>

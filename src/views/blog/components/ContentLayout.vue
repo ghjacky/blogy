@@ -1,12 +1,16 @@
 <template>
   <div id="content-layout">
-    <slot name="content" class="content"></slot>
-    <sidebar></sidebar>
+    <div class="content-wrapper">
+      <slot name="content"></slot>
+    </div>
+    <div class="sidebar-wrapper">
+      <sidebar></sidebar>
+    </div>
   </div>
 </template>
 
 <script>
-  import Sidebar from '@/views/blog/components/Sidebar'
+  import Sidebar from '@/views/blog/components/sidebar/Sidebar'
 
   export default {
     name: 'ContentLayout',

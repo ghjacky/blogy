@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import Widget from '@/views/blog/components/Widget'
+  import Widget from '@/views/blog/components/sidebar/Widget'
 
   export default {
     name: 'tag',
@@ -40,5 +40,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~@/style/blog/tag.scss";
+  @import "~@/style/blog/sidebar/tag.scss";
 </style>

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import Widget from '@/views/blog/components/Widget'
+  import Widget from '@/views/blog/components/sidebar/Widget'
 
   export default {
     name: 'Category',
