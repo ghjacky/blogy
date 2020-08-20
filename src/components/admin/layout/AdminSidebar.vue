@@ -23,12 +23,10 @@
       this.menus = AdminRouter.children.filter((item) => {
         return item.meta !== undefined && item.meta.title !== undefined && item.meta.title.length !== 0
       })
-      // eslint-disable-next-line no-debugger
-      debugger
     }
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  @import "~@/style/admin/admin-sidebar.scss";
 </style>
