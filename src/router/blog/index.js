@@ -1,7 +1,7 @@
 import Layout from '@/components/blog/Layout'
 export const BlogRouter = {
   path: '/blog',
-  name: '/blog',
+  name: '/blog/*',
   component: Layout,
   meta: { title: '我的博客' },
   children: [

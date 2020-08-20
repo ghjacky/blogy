@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { BlogRouter } from './blog/index'
 import { HomeRouter } from '@/router/home'
-import { AdminRouter } from '@/router/admin'
+import { AdminRouter, LoginRouter } from '@/router/admin'
 import { checkPerm } from '@/router/permission'
 
 Vue.use(VueRouter)
@@ -10,7 +10,8 @@ Vue.use(VueRouter)
 const routes = [
   HomeRouter,
   BlogRouter,
-  AdminRouter
+  AdminRouter,
+  LoginRouter
 ]
 
 const router = new VueRouter({

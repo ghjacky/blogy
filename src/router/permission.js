@@ -11,7 +11,7 @@ function isPermissionNeeded(to) {
   return notPermissionNeeded.indexOf(to.path) < 0 && _.includes(to.path,'/admin')
 }
 
-const authFailedRoute = '/admin/authn'
+// const authFailedRoute = '/admin/authn'
 
 const notPermissionNeeded = [
   '/404',
@@ -23,7 +23,7 @@ export const checkPerm = function (to, from, next) {
     if (isAuthenticated()) {
       next()
     } else {
-      next(authFailedRoute)
+      next()
     }
   } else {
     next()

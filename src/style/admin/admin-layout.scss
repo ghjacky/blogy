@@ -1,0 +1,17 @@
+.admin-layout {
+  width: 100%;
+  height: 100%;
+
+  .admin-content, .admin-sidebar {
+    height: 100%;
+    float: left;
+  }
+
+  .admin-content {
+    width: calc(100% - 200px);
+  }
+
+  .admin-sidebar {
+    width: 200px;
+  }
+}
