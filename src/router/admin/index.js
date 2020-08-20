@@ -7,6 +7,11 @@ export const AdminRouter = {
       path: 'login',
       name: '/admin/login',
       component: () => import('@/views/admin/login'),
+    },
+    {
+      path: 'authn',
+      name: '/admin/authn',
+      redirect: '/admin/login'
     }
   ]
 }
