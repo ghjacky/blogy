@@ -1,5 +1,5 @@
 .post {
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   padding-top: 10px;
   height: 100%;
@@ -9,7 +9,15 @@
   .title {
     font-size: 28px;
     font-weight: 800;
-    margin-bottom: 10px;
+  }
+
+  .stuff {
+    font-size: 12px;
+    transform-origin: bottom;
+    transform: scale(0.8);
+    span {
+      margin: 0 10px;
+    }
   }
   .content {
     padding: 10px 20px;

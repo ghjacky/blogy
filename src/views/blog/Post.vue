@@ -2,6 +2,13 @@
   <content-layout>
     <div class="post" slot="content">
       <div class="title">{{ post.title }}</div>
+      <div class="stuff">
+        <span>作者：{{ post.author.username }}</span>
+        <span>时间：{{ post.created_at }}</span>
+        <template v-for="(tag,index) in post.tags">
+          <span :key="index">{{ tag.name }}</span>
+        </template>
+      </div>
       <div class="content">
         <vue-markdown-plus>{{ post.content }}</vue-markdown-plus>
       </div>
