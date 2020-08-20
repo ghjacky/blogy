@@ -22,6 +22,11 @@ export const BlogRouter = {
       name: '/blog/latest',
       component: () => import('@/views/blog/Latest'),
       meta: { title: '最新文章' }
+    },
+    {
+      path: 'post/:id',
+      name: '/blog/post',
+      component: () => import('@/views/blog/Post')
     }
   ]
 }
