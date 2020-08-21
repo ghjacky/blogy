@@ -11,13 +11,19 @@ export const AdminRouter = {
     {
       path: '',
       name: '/admin',
-      component: () => import('@/views/admin/main')
+      component: () => import('@/views/admin/admin')
     },
     {
       path: 'post',
       name: '/admin/post',
-      component: () => import('@/views/admin/post'),
+      component: () => import('@/views/admin/adminPost'),
       meta: { title: '文章管理' }
+    },
+    {
+      path: 'category',
+      name: '/admin/category',
+      component: () => import('@/views/admin/adminCategory'),
+      meta: { title: '分类管理' }
     }
   ]
 }
