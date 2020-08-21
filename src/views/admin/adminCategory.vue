@@ -19,7 +19,6 @@
                        :width="col.width"></el-table-column>
       <el-table-column label="操作" width="100px">
         <template slot-scope="scope">
-          <el-button type="text" size="mini" @click="handleEditCategory(scope.row)">编辑</el-button>
           <el-button type="text" size="mini" @click="handleDeleteCategory(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -50,9 +49,6 @@
       }
     },
     methods: {
-      handleEditCategory() {
-
-      },
       handleDeleteCategory() {
 
       },
