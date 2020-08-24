@@ -5,7 +5,7 @@
         <el-input size="mini" v-model="user.username"></el-input>
       </el-form-item>
       <el-form-item label="Password: ">
-        <el-input size="mini" v-model="user.password"></el-input>
+        <el-input size="mini" v-model="user.password" type="password"></el-input>
       </el-form-item>
     </el-form>
     <el-button size="small" @click="handleLogin">登 陆</el-button>

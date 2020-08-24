@@ -29,7 +29,19 @@ export const AdminRouter = {
 }
 
 export const LoginRouter = {
-  path: '/login',
-  name: '/login',
-  component: () => import('@/views/admin/login')
+  path: '/',
+  name: '/',
+  component: () => import('@/App'),
+  children: [
+    {
+      path: 'login',
+      name: '/login',
+      component: () => import('@/views/admin/login'),
+    },
+    {
+      path: 'logout',
+      name: '/logout',
+      component: () => import('@/views/admin/logout'),
+    }
+  ]
 }

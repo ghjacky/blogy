@@ -1,0 +1,9 @@
+.admin-category {
+  color: #dddee0;
+  width: 90%;
+  margin: 20px auto;
+
+  ::v-deep .el-form-item__label {
+    color: #dddee0;
+  }
+}

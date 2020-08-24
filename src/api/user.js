@@ -23,3 +23,10 @@ export function auth(user) {
     data: user
   })
 }
+export function logout(user) {
+  return request()({
+    url: `${settings.apiPrefix}/users/auth/logout`,
+    method: 'post',
+    data: user
+  })
+}
