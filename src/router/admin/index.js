@@ -29,7 +29,7 @@ export const AdminRouter = {
 }
 
 export const LoginRouter = {
-  path: 'login',
-  name: '/admin/login',
+  path: '/login',
+  name: '/login',
   component: () => import('@/views/admin/login')
 }

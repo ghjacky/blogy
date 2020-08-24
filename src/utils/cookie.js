@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-const authc = 'authc'
+const authc = 'ss_id'
 
 export function getAuthCookie() {
   return Cookies.get(authc)

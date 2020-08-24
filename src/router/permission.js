@@ -3,27 +3,32 @@ import _ from 'lodash'
 
 function isAuthenticated() {
   const authc = getAuthCookie()
-  return authc !== undefined && authc.length !== 0
-
+  return authc !== undefined && authc.length !== 0 && _.split(authc, '_').length === 2
 }
 
 function isPermissionNeeded(to) {
-  return notPermissionNeeded.indexOf(to.path) < 0 && _.includes(to.path,'/admin')
+  return permissionNeeded.filter(item => {
+    return _.includes(to, item)
+  }).length > 0 && notPermissionNeeded.filter(item => {
+    return _.includes(to, item)
+  }).length <= 0
 }
 
 // const authFailedRoute = '/admin/authn'
 
+const permissionNeeded = [
+  `/admin`
+]
 const notPermissionNeeded = [
-  '/404',
   '/admin/login'
 ]
 
 export const checkPerm = function (to, from, next) {
-  if (isPermissionNeeded(to)) {
+  if (isPermissionNeeded(to.path)) {
     if (isAuthenticated()) {
       next()
     } else {
-      next()
+      next('/login')
     }
   } else {
     next()

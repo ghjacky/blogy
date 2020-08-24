@@ -10,6 +10,9 @@ const mutations = {
 }
 
 const actions = {
+  setUser({ commit }, user) {
+    commit('SET_USER', user)
+  }
 }
 
 export default {

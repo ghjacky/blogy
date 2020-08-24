@@ -24,6 +24,7 @@
 
 <script>
   import { dialogMixins } from '@/views/admin/mixins/dialog'
+  import { fetchCategories } from '@/api/category'
   import VueSimplemde from 'vue-simplemde'
   import hljs from 'highlight.js'
 
@@ -61,6 +62,7 @@
       }
     },
     created() {
+      this.fetchCategoriesList()
     },
     data() {
       return {
@@ -89,6 +91,11 @@
       }
     },
     methods: {
+      fetchCategoriesList() {
+        fetchCategories(0).then(res => {
+          this.categories = res.data.data
+        })
+      },
       handleCommit() {
 
       }
