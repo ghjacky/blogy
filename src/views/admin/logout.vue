@@ -5,20 +5,13 @@
 <script>
   import { deleteAuthCookie } from '@/utils/cookie'
   import { logout } from '@/api/user'
-  import { mapGetters } from 'vuex'
-  import store from '@/store'
 
   export default {
     name: 'logout',
-    computed: {
-      ...mapGetters([
-        'currentUser'
-      ])
-    },
     created() {
       deleteAuthCookie()
-      logout(this.currentUser)
-      store.dispatch('user/delUser')
+      logout({ username: localStorage.getItem('currentUser') })
+      localStorage.removeItem('currentUser')
       window.location.href = '/'
     }
   }

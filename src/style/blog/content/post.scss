@@ -9,12 +9,14 @@
   .title {
     font-size: 28px;
     font-weight: 800;
+    text-align: center;
   }
 
   .stuff {
     font-size: 12px;
     transform-origin: bottom;
     transform: scale(0.8);
+    text-align: center;
 
     span {
       margin: 0 10px;

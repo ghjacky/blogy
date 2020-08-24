@@ -5,7 +5,7 @@
         <el-input v-model="category.name"></el-input>
       </el-form-item>
       <el-form-item label="父节点">
-        <el-select v-model="category.parent">
+        <el-select v-model="category.parent" clearable>
           <el-option v-for="(cat,index) in categories" :key="index" :label="cat.name" :value="cat.id"></el-option>
         </el-select>
       </el-form-item>
@@ -28,6 +28,7 @@
 
 <script>
   import { fetchCategories, addCategory } from '@/api/category'
+  import moment from 'moment'
 
   export default {
     name: 'adminCategory',
@@ -36,22 +37,34 @@
         columns: [
           { label: 'id', prop: 'id', width: '50px' },
           { label: '名称', prop: 'name', width: '' },
-          { label: '父类', prop: 'parent', width: '60px'},
+          { label: '父类', prop: 'parent', width: '60px' },
           { label: '创建时间', prop: 'created_at', width: '150px' }
         ],
-        categories: [
-        ],
-        category: {
-        }
+        categories: [],
+        category: {}
       }
     },
     created() {
+      this.resetCategory()
       this.fetchCategories()
     },
     methods: {
+      resetCategory() {
+        this.category = Object.assign({}, {
+          id: 0,
+          name: '',
+        })
+      },
       fetchCategories() {
         fetchCategories(0).then(res => {
-          this.categories = res.data.data
+          this.categories = res.data.data.map(item => {
+            return {
+              id: item.id,
+              created_at: moment(item.created_at).format('YYYY-MM-DD'),
+              name: item.name,
+              parent: item.parent
+            }
+          })
         })
       },
       handleAddCategory() {
@@ -62,6 +75,7 @@
             showClose: true,
             duration: 2000
           })
+          this.resetCategory()
           this.fetchCategories()
         })
       },

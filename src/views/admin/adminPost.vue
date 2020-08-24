@@ -13,7 +13,7 @@
     </el-table>
     <el-pagination small background layout="prev, pager, next" :total="total" :page-count="10"
                    :page-sizes="query.pageSize" :page-size="query.limit"
-                   :current-page.sync="query.page"></el-pagination>
+                   :current-page.sync="query.page" @current-change="fetchPosts"></el-pagination>
     <admin-post-dialog v-if="dialogVisible" :visible.sync="dialogVisible" :post="post" :title="dialogTitle"
                        :operation="dialogOper"></admin-post-dialog>
   </div>
@@ -21,7 +21,8 @@
 
 <script>
   import adminPostDialog from '@/views/admin/components/dialog/adminPostDialog'
-  import { mapGetters } from 'vuex'
+  import { fetchPosts, deletePost, getPost } from '@/api/post'
+  import moment from 'moment'
 
   export default {
     name: 'adminPost',
@@ -33,76 +34,24 @@
         dialogVisible: false,
         dialogOper: 0,
         dialogTitle: '',
-        post: {
-          id: 1,
-          created_at: '2020-08-19 15:00:00',
-          title: 'vue 基础知识 01',
-          author: {
-            id: 1,
-            name: 'ghjacky',
-            username: 'ghjacky'
-          },
-          content: '文章内容',
-          summary: 'Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。\n' +
-            '\n' +
-            '如果你想在深入学习 Vue 之前对它有更多了解，我们制作了一个视频，带您了解其核心概念和一个示例工程。' +
-            '\n' +
-            '官方指南假设你已了解关于 HTML、CSS 和 JavaScript 的中级知识。如果你刚开始学习前端开发，将框架作为你的第一步可能不是最好的主意——掌握好基础知识再来吧！之前有其它框架的使用经验会有帮助，但这不是必需的。',
-          cover: '',
-          category: {
-            id: 1,
-            name: 'vue'
-          },
-          tags: [
-            { id: 1, name: 'vue' },
-            { id: 2, name: '前端' }
-          ]
-        },
+        post: {},
         total: 1,
         query: {
+          field: '',
+          text: '',
           page: 1,
           pageSize: [10, 20, 30],
-          limit: 10
+          limit: 10,
+          order: '-created_at'
         },
         columns: [
           { label: 'id', prop: 'id', width: '50px' },
           { label: '标题', prop: 'title', width: '' },
-          { label: '作者', prop: 'author.username', width: '100px' },
+          { label: '作者', prop: 'author', width: '100px' },
           { label: '创建时间', prop: 'created_at', width: '150px' }
         ],
-        posts: [
-          {
-            id: 1,
-            created_at: '2020-08-19 15:00:00',
-            title: 'vue 基础知识 01',
-            author: {
-              id: 1,
-              name: 'ghjacky',
-              username: 'ghjacky'
-            },
-            content: '文章内容',
-            summary: 'Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。\n' +
-              '\n' +
-              '如果你想在深入学习 Vue 之前对它有更多了解，我们制作了一个视频，带您了解其核心概念和一个示例工程。' +
-              '\n' +
-              '官方指南假设你已了解关于 HTML、CSS 和 JavaScript 的中级知识。如果你刚开始学习前端开发，将框架作为你的第一步可能不是最好的主意——掌握好基础知识再来吧！之前有其它框架的使用经验会有帮助，但这不是必需的。',
-            cover: '',
-            category: {
-              id: 1,
-              name: 'vue'
-            },
-            tags: [
-              { id: 1, name: 'vue' },
-              { id: 2, name: '前端' }
-            ]
-          }
-        ]
+        posts: []
       }
-    },
-    computed: {
-      ...mapGetters([
-        'currentUser'
-      ])
     },
     watch: {
       dialogVisible: function () {
@@ -117,15 +66,22 @@
     },
     methods: {
       fetchPosts() {
-
+        fetchPosts(this.query).then(res => {
+          this.posts = res.data.data.map(item => {
+            return {
+              id: item.id,
+              created_at: moment(item.created_at).format('YYYY-MM-DD'),
+              author: item.author,
+              title: item.title
+            }
+          })
+        })
       },
       resetPost() {
         this.post = Object.assign({}, {
           title: '',
-          author: this.currentUser.username,
-          category: {
-            name: ''
-          },
+          author: localStorage.getItem('currentUser'),
+          category: '',
           tags: '',
           content: ''
         })
@@ -136,11 +92,29 @@
         this.dialogTitle = '新增文章'
         this.dialogVisible = true
       },
-      handleEditPost() {
-
+      handleEditPost(post) {
+        getPost(post.id).then(res => {
+          this.post = res.data.data
+        })
+        this.dialogOper = 1
+        this.dialogTitle = '编辑文章'
+        this.dialogVisible = true
       },
-      handleDeletePost() {
-
+      handleDeletePost(post) {
+        this.$confirm('确定删除更改文章？', '提示', {
+          confirmButtonText: '删除',
+          cancelButtonText: '取消'
+        }).then(() => {
+          deletePost(post.id).then(() => {
+            this.$message({
+              type: 'success',
+              message: '删除成功',
+              showClose: true,
+              duration: 2000
+            })
+          }).catch(() => {
+          })
+        })
       },
       tableCellStyle() {
         return 'text-align: center; vertical-align: middle'

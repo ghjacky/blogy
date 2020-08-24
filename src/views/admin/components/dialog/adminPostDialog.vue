@@ -5,16 +5,20 @@
       <el-form-item label="标题">
         <el-input v-model="post.title"></el-input>
       </el-form-item>
+      <el-form-item label="摘要">
+        <el-input type="textarea" v-model="post.summary" :maxlength="300" :minlenght="50"></el-input>
+      </el-form-item>
       <el-form-item label="分类">
         <el-select value-key="name" filterable placeholder="请选择分类" v-model="post.category">
-          <el-option v-for="(cat,index) in categories" :key="index" :label="cat.name" :value="cat"></el-option>
+          <el-option v-for="(cat,index) in categories" :key="index" :label="cat.name" :value="cat.name"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="标签">
         <el-input v-model="post.tags"></el-input>
       </el-form-item>
     </el-form>
-    <vue-simplemde :highlight="true" preview-class="markdown-body" :configs="mde.configs"></vue-simplemde>
+    <vue-simplemde :highlight="true" preview-class="markdown-body" :configs="mde.configs"
+                   v-model="post.content"></vue-simplemde>
     <div slot="footer">
       <el-button size="small" type="primary" @click="handleCommit">提交</el-button>
       <el-button size="small" type="primary" @click="handleCloseDialog">取消</el-button>
@@ -25,8 +29,10 @@
 <script>
   import { dialogMixins } from '@/views/admin/mixins/dialog'
   import { fetchCategories } from '@/api/category'
+  import { addPost, updatePost } from '@/api/post'
   import VueSimplemde from 'vue-simplemde'
   import hljs from 'highlight.js'
+  import _ from 'lodash'
 
   window.hljs = hljs
   export default {
@@ -97,7 +103,35 @@
         })
       },
       handleCommit() {
-
+        if (this.operation === 0) {
+          const p = Object.assign({}, this.post)
+          p.tags = _.split(this.post.tags, ',').map(item => {
+            return { name: item }
+          })
+          addPost(p).then(() => {
+            this.$message({
+              type: 'success',
+              message: '文章添加成功',
+              showClose: true,
+              duration: 2000
+            })
+          })
+          this.handleCloseDialog()
+        } else if (this.operation === 1) {
+          const p = Object.assign({}, this.post)
+          p.tags = _.split(this.post.tags, ',').map(item => {
+            return { name: item }
+          })
+          updatePost(p).then(() => {
+            this.$message({
+              type: 'success',
+              message: '文章编辑成功',
+              showClose: true,
+              duration: 2000
+            })
+            this.handleCloseDialog()
+          })
+        }
       }
     }
   }

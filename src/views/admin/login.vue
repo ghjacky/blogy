@@ -14,7 +14,6 @@
 
 <script>
   import { auth } from '@/api/user'
-  import store from '@/store'
   import { deleteAuthCookie } from '@/utils/cookie'
 
   export default {
@@ -28,7 +27,7 @@
       handleLogin() {
         deleteAuthCookie()
         auth(this.user).then(() => {
-          store.dispatch('user/setUser', this.user)
+          localStorage.setItem('currentUser', this.user.username)
           this.$router.push('/admin')
         })
       }

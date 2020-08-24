@@ -1,39 +1,38 @@
 <template>
   <widget class="tag" title="标签">
-    <el-tag type="info" v-for="(tag,index) in tags" :key="index" @click="handleClick">{{ tag.name }}</el-tag>
+    <el-tag type="info" v-for="(tag,index) in tags" :key="index" @click="handleClick(tag)">{{ tag.name }}</el-tag>
   </widget>
 </template>
 
 <script>
   import Widget from '@/views/blog/components/sidebar/Widget'
+  import { fetchTags } from '@/api/tag'
 
   export default {
     name: 'tag',
     components: { Widget },
     data() {
       return {
-        tags: [
-          {
-            id: 1,
-            name: '前端'
-          },
-          {
-            id: 2,
-            name: 'vue'
-          },
-          {
-            id: 3,
-            name: '后端'
-          },
-          {
-            id: 4,
-            name: 'golang'
-          }
-        ]
+        tags: [],
+        tag: {
+          id: 0,
+          name: ''
+        }
       }
     },
+    created() {
+      this.fetchTags()
+    },
     methods: {
-      handleClick() {
+      fetchTags(){
+        fetchTags().then(res => {
+          this.tags = res.data.data
+        })
+      },
+      handleClick(tag) {
+        if (tag.name !== this.tag.name) {
+          this.$router.push(`/blog/posts?tag=${tag.name}`)
+        }
       }
     }
   }

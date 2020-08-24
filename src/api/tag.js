@@ -7,3 +7,10 @@ export function getTag(tag) {
     method: 'get'
   })
 }
+
+export function fetchTags() {
+  return request()({
+    url: `${settings.apiPrefix}/tags`,
+    method: 'get'
+  })
+}

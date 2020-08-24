@@ -31,9 +31,9 @@ export function getPost(id) {
   })
 }
 
-export function fetchPosts() {
+export function fetchPosts(query) {
   return request()({
-    url: `${settings.apiPrefix}/posts`,
+    url: `${settings.apiPrefix}/posts?field=${query.field}&text=${query.text}&order=${query.order}&page=${query.page}&limit=${query.limit}`,
     method: 'get'
   })
 }

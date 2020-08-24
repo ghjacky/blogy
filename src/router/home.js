@@ -1,6 +1,7 @@
 export const HomeRouter = {
   path: '/',
   name: '/',
+  redirect: '/blog',
   component: () => import('@/views/Home'),
   meta: { title: '主页' },
   children: [

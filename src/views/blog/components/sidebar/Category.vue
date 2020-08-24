@@ -1,39 +1,43 @@
 <template>
   <widget class="category" title="分类">
-    <el-tree :data="cats" :props="fieldMap" @node-click="handleClick" highlight-current></el-tree>
+    <el-tree :data="categories" :props="fieldMap" @node-click="handleClick" highlight-current></el-tree>
   </widget>
 </template>
 
 <script>
   import Widget from '@/views/blog/components/sidebar/Widget'
+  import { fetchCategories } from '@/api/category'
 
   export default {
     name: 'Category',
     components: { Widget },
     data() {
       return {
-        cats: [
-          {
-            id: 1,
-            name: '前端',
-            parent: 0,
-            children: [
-              {
-                id: 2,
-                name: 'vue',
-                parent: 1
-              }
-            ]
-          }
-        ],
+        categories: [],
         fieldMap: {
           label: 'name',
           children: 'children'
+        },
+        category: {
+          id: 0,
+          name: ''
         }
       }
     },
+    created() {
+      this.fetchCategories()
+    },
     methods: {
-      handleClick() {
+      fetchCategories() {
+        fetchCategories(1).then(res => {
+          this.categories = res.data.data
+        })
+      },
+      handleClick(category) {
+        if (category.id !== this.category.id) {
+          this.category = category
+          this.$router.push(`/blog/posts?cat=${category.id}`)
+        }
       }
     }
   }
