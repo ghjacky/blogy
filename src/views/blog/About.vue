@@ -9,7 +9,7 @@
     name: 'About',
     data() {
       return {
-        aboutMe: '程序员一枚'
+        aboutMe: 'All things can be fixed just by a hello world -- ghjacky'
       }
     }
   }
