@@ -30,17 +30,24 @@
     white-space: inherit;
     overflow: hidden;
     text-align: left;
+    line-height: 1.75em;
+
+    div > :not(aa) {
+      margin-bottom: 2em;
+    }
 
     ::v-deep a {
       color: bisque;
     }
 
-    ::v-deep p > code {
+    ::v-deep :not(pre) > code {
       color: #ccc;
-      background-color: #4c4c4c;
-      font-size: 1em;
+      background-color: #4e4e4e;
+      font-size: 0.8em;
       text-align: left;
-      line-height: 1.5em;
+      padding: 0.2em;
+      margin: 0 0.2em;
+      line-height: 1.75em;
       hyphens: none;
     }
 
