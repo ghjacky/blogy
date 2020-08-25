@@ -1,16 +1,16 @@
 import { getAuthCookie } from '@/utils/cookie'
-import _ from 'lodash'
+import { includes, split } from 'lodash'
 
 function isAuthenticated() {
   const authc = getAuthCookie()
-  return authc !== undefined && authc.length !== 0 && _.split(authc, '_').length === 2
+  return authc !== undefined && authc.length !== 0 && split(authc, '_').length === 2
 }
 
 function isPermissionNeeded(to) {
   return permissionNeeded.filter(item => {
-    return _.includes(to, item)
+    return includes(to, item)
   }).length > 0 && notPermissionNeeded.filter(item => {
-    return _.includes(to, item)
+    return includes(to, item)
   }).length <= 0
 }
 

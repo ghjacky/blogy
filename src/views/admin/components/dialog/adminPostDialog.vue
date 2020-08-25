@@ -31,10 +31,8 @@
   import { fetchCategories } from '@/api/category'
   import { addPost, updatePost } from '@/api/post'
   import VueSimplemde from 'vue-simplemde'
-  import hljs from 'highlight.js'
-  import _ from 'lodash'
+  import { split } from 'lodash'
 
-  window.hljs = hljs
   export default {
     name: 'adminPostDialog',
     mixins: [dialogMixins],
@@ -105,7 +103,7 @@
       handleCommit() {
         if (this.operation === 0) {
           const p = Object.assign({}, this.post)
-          p.tags = _.split(this.post.tags, ',').map(item => {
+          p.tags = split(this.post.tags, ',').map(item => {
             return { name: item }
           })
           addPost(p).then(() => {
@@ -119,7 +117,7 @@
           })
         } else if (this.operation === 1) {
           const p = Object.assign({}, this.post)
-          p.tags = _.split(this.post.tags, ',').map(item => {
+          p.tags = split(this.post.tags, ',').map(item => {
             return { name: item }
           })
           updatePost(p).then(() => {

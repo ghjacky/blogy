@@ -9,11 +9,6 @@ export const AdminRouter = {
       redirect: '/admin/login'
     },
     {
-      path: '',
-      name: '/admin',
-      component: () => import('@/views/admin/admin')
-    },
-    {
       path: 'post',
       name: '/admin/post',
       component: () => import('@/views/admin/adminPost'),
@@ -24,24 +19,6 @@ export const AdminRouter = {
       name: '/admin/category',
       component: () => import('@/views/admin/adminCategory'),
       meta: { title: '分类管理' }
-    }
-  ]
-}
-
-export const LoginRouter = {
-  path: '/',
-  name: '/',
-  component: () => import('@/App'),
-  children: [
-    {
-      path: 'login',
-      name: '/login',
-      component: () => import('@/views/admin/login'),
-    },
-    {
-      path: 'logout',
-      name: '/logout',
-      component: () => import('@/views/admin/logout'),
     }
   ]
 }

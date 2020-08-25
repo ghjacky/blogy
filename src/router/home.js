@@ -9,7 +9,17 @@ export const HomeRouter = {
       path: 'home',
       name: '/home',
       component: () => import('@/views/Home'),
-      meta: { title: '主页' },
+      meta: { title: '主页' }
+    },
+    {
+      path: 'login',
+      name: '/login',
+      component: () => import('@/views/admin/login')
+    },
+    {
+      path: 'logout',
+      name: '/logout',
+      component: () => import('@/views/admin/logout')
     }
   ]
 }

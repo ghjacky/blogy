@@ -6,12 +6,6 @@ export const BlogRouter = {
   redirect: '/blog/latest',
   meta: { title: '我的博客' },
   children: [
-    // {
-    //   path: 'home',
-    //   name: '/blog/home',
-    //   component: () => import('@/views/blog/Home'),
-    //   meta: { title: '博客首页' }
-    // },
     {
       path: 'latest',
       name: '/blog/latest',

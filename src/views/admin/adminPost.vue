@@ -24,7 +24,7 @@
   import adminPostDialog from '@/views/admin/components/dialog/adminPostDialog'
   import { fetchPosts, deletePost, getPost } from '@/api/post'
   import moment from 'moment'
-  import _ from 'lodash'
+  import { join } from 'lodash'
 
   export default {
     name: 'adminPost',
@@ -113,7 +113,7 @@
         getPost(post.id).then(res => {
           this.post = res.data.data
           const tags = res.data.data.tags
-          this.post.tags = _.join(tags.map(item => {
+          this.post.tags = join(tags.map(item => {
             return item.name
           }), ',')
         })
