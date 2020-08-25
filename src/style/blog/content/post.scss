@@ -26,9 +26,26 @@
   .content {
     padding: 10px 20px;
     font-size: 16px;
-    font-weight: 500;
-    white-space: pre-wrap;
+    font-family: Hiragino Sans GB, MicroSoft YaHei, Helvetica Neue, Helvetica, sans-serif;
+    white-space: inherit;
     overflow: hidden;
     text-align: left;
+
+    ::v-deep a {
+      color: bisque;
+    }
+
+    ::v-deep p > code {
+      color: #ccc;
+      background-color: #4c4c4c;
+      font-size: 1em;
+      text-align: left;
+      line-height: 1.5;
+      hyphens: none;
+    }
+
+    ::v-deep pre > code {
+      white-space: pre-wrap;
+    }
   }
 }
