@@ -28,6 +28,7 @@
     "sass-loader": "^9.0.3",
     "vue-cli-plugin-element-ui": "^1.1.4",
     "vue-template-compiler": "^2.6.11",
+    "vue-markdown": "^2.2.4",
     "vue-markdown-plus": "^2.0.16",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
@@ -36,7 +37,8 @@
     "github-markdown-css": "^4.0.0",
     "axios": "^0.20.0",
     "simplemde-theme-base": "^0.2.1",
-    "moment": "^2.27.0"
+    "moment": "^2.27.0",
+    "prismjs": "^1.21.0"
   },
   "eslintConfig": {
     "root": true,
