@@ -115,8 +115,8 @@
               showClose: true,
               duration: 2000
             })
+            this.handleCloseDialog()
           })
-          this.handleCloseDialog()
         } else if (this.operation === 1) {
           const p = Object.assign({}, this.post)
           p.tags = _.split(this.post.tags, ',').map(item => {

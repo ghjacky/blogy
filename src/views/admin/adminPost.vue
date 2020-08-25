@@ -4,8 +4,9 @@
     <el-table size="small" :data="posts" border :header-cell-style="tableHeaderCellStyle" :cell-style="tableCellStyle">
       <el-table-column v-for="(col,index) in columns" :key="index" :prop="col.prop"
                        :label="col.label" :width="col.width"></el-table-column>
-      <el-table-column label="操作" width="150px">
+      <el-table-column label="操作" width="200px">
         <template slot-scope="scope">
+          <el-button type="text" size="mini" @click="handleViewPost(scope.row)">查看</el-button>
           <el-button type="text" size="mini" @click="handleEditPost(scope.row)">编辑</el-button>
           <el-button type="text" size="mini" @click="handleDeletePost(scope.row)">删除</el-button>
         </template>
@@ -57,12 +58,14 @@
     watch: {
       dialogVisible: function () {
         if (!this.dialogVisible) {
+          this.resetQuery()
           this.fetchPosts()
         }
       }
     },
     created() {
       this.resetPost()
+      this.resetQuery()
       this.fetchPosts()
     },
     methods: {
@@ -76,6 +79,16 @@
               title: item.title
             }
           })
+        })
+      },
+      resetQuery() {
+        this.query = Object.assign({}, {
+          field: '',
+          text: '',
+          page: 1,
+          pageSize: [10, 20, 30],
+          limit: 10,
+          order: '-created_at'
         })
       },
       resetPost() {
@@ -92,6 +105,9 @@
         this.dialogOper = 0
         this.dialogTitle = '新增文章'
         this.dialogVisible = true
+      },
+      handleViewPost(post) {
+        this.$router.push(`/blog/post/${post.id}`)
       },
       handleEditPost(post) {
         getPost(post.id).then(res => {
