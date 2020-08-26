@@ -27,7 +27,7 @@ module.exports = {
     }
   },
   configureWebpack: {
-    plugins: [new BundleAnalyzerPlugin()]
+    // plugins: [new BundleAnalyzerPlugin()]
   },
   chainWebpack(config) {
     config.plugins.delete('preload') // TODO: need test

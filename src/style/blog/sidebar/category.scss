@@ -1,0 +1,9 @@
+.category {
+  ::v-deep .el-tree-node {
+    background-color: #4e5558;
+    color: #dddee0;
+  }
+  ::v-deep .el-tree-node__content:hover, ::v-deep .is-current > .el-tree-node__content {
+    background-color: #343a3d;
+  }
+}

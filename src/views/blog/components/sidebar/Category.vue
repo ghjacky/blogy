@@ -1,6 +1,6 @@
 <template>
   <widget class="category" title="分类">
-    <el-tree :data="categories" :props="fieldMap" @node-click="handleClick" highlight-current></el-tree>
+    <el-tree :data="categories" :props="fieldMap" @node-click="handleClick"></el-tree>
   </widget>
 </template>
 
@@ -44,5 +44,5 @@
 </script>
 
 <style scoped lang="scss">
-
+  @import "~@/style/blog/sidebar/category.scss";
 </style>
