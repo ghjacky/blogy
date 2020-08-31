@@ -5,7 +5,7 @@
         <el-input size="mini" v-model="user.username"></el-input>
       </el-form-item>
       <el-form-item label="Password: ">
-        <el-input size="mini" v-model="user.password" type="password" @keypress.native="handleLogin"></el-input>
+        <el-input size="mini" v-model="user.password" type="password" @keypress.native="handleKeyPress"></el-input>
       </el-form-item>
     </el-form>
     <el-button size="small" @click="handleLogin">登 陆</el-button>
@@ -24,6 +24,12 @@
       }
     },
     methods: {
+      handleKeyPress(e) {
+        switch (e.keyCode) {
+          case 13:
+            this.handleLogin()
+        }
+      },
       handleLogin() {
         deleteAuthCookie()
         auth(this.user).then(() => {
