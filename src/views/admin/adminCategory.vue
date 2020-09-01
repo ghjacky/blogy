@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import { fetchCategories, addCategory } from '@/api/category'
+  import { fetchCategories, addCategory, deleteCategory } from '@/api/category'
   import moment from 'moment'
 
   export default {
@@ -79,8 +79,20 @@
           this.fetchCategories()
         })
       },
-      handleDeleteCategory() {
-
+      handleDeleteCategory(category) {
+        this.$confirm('确认删除该分类吗？', '提示', {
+          confirmButtonText: '删除',
+          cancelButtonText: '取消'
+        }).then(() => {
+          deleteCategory(category.id).then(() => {
+            this.$message({
+              type: 'success',
+              message: '分类删除成功',
+              showClose: true,
+              duration: 2000
+            })
+          })
+        })
       },
       tableCellStyle() {
         return 'text-align: center; vertical-align: middle'
