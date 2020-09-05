@@ -9,6 +9,7 @@
           <span :key="index">{{ tag.name }}</span>
         </template>
       </div>
+      <div class="summary">摘要：{{ post.summary }}</div>
       <div class="content">
         <vue-markdown :key="post.id">{{ post.content }}</vue-markdown>
       </div>
