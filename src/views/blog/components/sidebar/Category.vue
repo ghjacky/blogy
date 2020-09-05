@@ -34,7 +34,7 @@
         })
       },
       handleClick(category) {
-        if (category.id !== this.category.id) {
+        if (category.id !== this.category.id && !(category.parent === 0 && category.children.length > 0)) {
           this.category = category
           this.$router.push(`/blog/posts?cat=${category.id}`)
         }
